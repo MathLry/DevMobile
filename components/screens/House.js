@@ -19,10 +19,10 @@ export default function App() {
     }
     const addButton = <Button onPress={addPlace}>+</Button>;
     return (
-        <ScrollView>
+        
             <View style={styles.container}>
             <Input 
-           placeholder="Ajouter une piece"
+            placeholder="Ajouter une piece"
             value={currentPlace} 
             onChangeText={(text) => setCurrentPlace(text)}
             rightElement={addButton}
@@ -43,7 +43,7 @@ export default function App() {
                 </View>
             </View>
 
-        </ScrollView>
+      
     );
 }
 
