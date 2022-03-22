@@ -1,9 +1,9 @@
 import {Text, StyleSheet, TouchableOpacity} from "react-native";
 import React from'react';
 
-export default function HouseItem({ item }) {
+export default ({text,done, onToggle, onViewRoom, item}) => {
     return (
-        <TouchableOpacity >
+        <TouchableOpacity onPress={onViewRoom} >
             <Text style={styles.item}>{item.text}</Text>
         </TouchableOpacity>
         );

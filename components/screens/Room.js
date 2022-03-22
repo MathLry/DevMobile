@@ -4,9 +4,7 @@ import HouseItem from '../houseItem';
 
 export default ({navigation}) => {
     const [house, setHouse] = useState([
-        {text : "Salon", key:'1'},
-        {text : "Cuisine", key:'2'},
-        {text : "Salle à manger", key:'3'},
+        {text : "Tirroire", key:'1'},
     ]);
 
     const viewRoom = (todo) =>{
