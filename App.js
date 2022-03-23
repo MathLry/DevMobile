@@ -1,37 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import House from './components/screens/House.js';
-import {NativeBaseProvider} from 'native-base';
-import {NavigationContainer} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const { Navigator, Screen} = createNativeStackNavigator();
 import HomeScreen from './components/screens/Home';
 import SearchScreen from './components/screens/SearchItems';
 import ListScreen from './components/screens/ListItems';
 
-const Nav = () => {
-  return (
-    <Navigator>
-      <Screen name="House" component={House} options={{headerStyle : {backgroundColor : "grey"}, title : "Maison"}}></Screen>
-    </Navigator>
-  )
-}
 const Tab = createBottomTabNavigator();
 
-console.log(Nav);
 export default function App() {
   return (
-    <NativeBaseProvider>
-      <NavigationContainer>
-        <Nav></Nav>
-      </NavigationContainer>
-      <StatusBar style="auto" />
-    </NativeBaseProvider>
     <NavigationContainer>
       <Tab.Navigator 
         screenOptions={({ route }) => ({
@@ -58,10 +37,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
