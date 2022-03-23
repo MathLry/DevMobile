@@ -1,7 +1,8 @@
 import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
 import { useState  } from 'react';
 import HouseItem from '../houseItem';
-import {Button,Input} from 'native-base';
+import {Button,Input,NativeBaseProvider} from 'native-base';
+
 
 export default function App() {
     const [currentPlace, setCurrentPlace] = useState("");
@@ -19,7 +20,7 @@ export default function App() {
     }
     const addButton = <Button onPress={addPlace}>+</Button>;
     return (
-        
+        <NativeBaseProvider>
             <View style={styles.container}>
             <Input 
             placeholder="Ajouter une piece"
@@ -43,7 +44,7 @@ export default function App() {
                 </View>
             </View>
 
-      
+            </NativeBaseProvider>
     );
 }
 
