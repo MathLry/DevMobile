@@ -1,22 +1,40 @@
+
+
 import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
 import { useState  } from 'react';
 import HouseItem from '../houseItem';
+import {Button,Input,NativeBaseProvider} from 'native-base';
 
-export default ({navigation}) => {
+
+export default function App({navigation}) {
+    const [currentPlace, setCurrentPlace] = useState("");
     const [house, setHouse] = useState([
-        {text : "Salon", key:'1'},
-        {text : "Cuisine", key:'2'},
-        {text : "Salle à manger", key:'3'},
+        {text : "Salon", key:1},
+        {text : "Cuisine", key:2},
+        {text : "Salle à manger", key:3},
     ]);
-
+    
+    const addPlace = () => {
+        
+        setHouse([...house,{text : currentPlace, key: house.length+1}])
+        setCurrentPlace("");
+       
+    }
+    const addButton = <Button onPress={addPlace}>+</Button>;
     const viewRoom = (todo) =>{
         navigation.navigate("Room", {todo});
     }
-
-
     return (
+        <NativeBaseProvider>
             <View style={styles.container}>
-                <View style={styles.content}>
+            <Input 
+            placeholder="Ajouter une piece"
+            value={currentPlace} 
+            onChangeText={(text) => setCurrentPlace(text)}
+            rightElement={addButton}
+            >
+            </Input>
+            <View style={styles.content}>
                     <View style={styles.list}>
                         <FlatList
                             data={house}
@@ -34,9 +52,8 @@ export default ({navigation}) => {
 
                 </View>
             </View>
-    );
-}
-
+            </NativeBaseProvider>
+    )}
 const styles = StyleSheet.create({
     container:{
         flex: 1,
@@ -53,4 +70,4 @@ const styles = StyleSheet.create({
     list: {
         marginTop: 20,
     },
-});
+})
