@@ -20,11 +20,15 @@ export default function App({navigation}) {
         setCurrentPlace("");
        
     }
+
     const addButton = <Button onPress={addPlace}>+</Button>;
+
     const viewRoom = (todo) =>{
         navigation.navigate("Room", {todo});
     }
+
     return (
+        
         <NativeBaseProvider>
             <View style={styles.container}>
             <Input 

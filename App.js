@@ -1,15 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import House from './components/screens/House.js';
 import Room from './components/screens/Room.js'
-import {NativeBaseProvider} from 'native-base';
+import Furniture from './components/screens/Furniture.js'
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-import HomeScreen from './components/screens/Home';
 import SearchScreen from './components/screens/SearchItems';
 import ListScreen from './components/screens/ListItems';
 
@@ -20,6 +16,7 @@ const Nav = () => {
     <Navigator>
       <Screen name="House" component={House} options={{headerStyle : {backgroundColor : "orange"}, title : "Maison"}}></Screen>
       <Screen name="Room" component={Room} options={({route}) => { return {title : route.params.todo.text, headerStyle : {backgroundColor : 'orange'}}}}></Screen>
+      <Screen name="Furniture" component={Furniture} options={({route}) => { return {title : route.params.todo.text, headerStyle : {backgroundColor : 'orange'}}}}></Screen>
     </Navigator>
   )
 }

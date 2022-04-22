@@ -1,16 +1,20 @@
+
+
 import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
 import { useState  } from 'react';
 import HouseItem from '../houseItem';
 import {Button,Input,NativeBaseProvider} from 'native-base';
 
-export default ({navigation}) => {
-    const [currentPlace, setCurrentPlace] = useState("");
-    const [room, setRoom] = useState([
-        {text : "Tirroire", key:'1'},
-    ]);
 
+export default function App({navigation}) {
+    const [currentPlace, setCurrentPlace] = useState("");
+    const [furniture, setFurniture] = useState([
+        {text : "clé", key:1},
+    ]);
+    
     const addPlace = () => {
-        setRoom([...room,{text : currentPlace, key: room.length+1}])
+        
+        setFurniture([...furniture,{text : currentPlace, key: furniture.length+1}])
         setCurrentPlace("");
        
     }
@@ -21,26 +25,28 @@ export default ({navigation}) => {
         navigation.navigate("Furniture", {todo});
     }
 
+
     return (
+        
         <NativeBaseProvider>
             <View style={styles.container}>
             <Input 
-            placeholder="Ajouter un meuble"
+            placeholder="Ajouter un objet"
             value={currentPlace} 
             onChangeText={(text) => setCurrentPlace(text)}
             rightElement={addButton}
             >
             </Input>
-                <View style={styles.content}>
+            <View style={styles.content}>
                     <View style={styles.list}>
                         <FlatList
-                            data={room}
+                            data={furniture}
                             renderItem={({item}) => (
                                 <HouseItem item={item} 
-                                onViewRoom={() => {viewRoom(item)}}
+                                onViewFurniture={() => {viewFurniture(item)}}
                                 text={item.text}  
                                 onToggle={() => {
-                                    setRoom([...room]);
+                                    setFurniture([...furniture]);
                                 }}/>
                             )}
                         />
@@ -50,11 +56,7 @@ export default ({navigation}) => {
                 </View>
             </View>
             </NativeBaseProvider>
-    );
-}
-
-
-
+    )}
 const styles = StyleSheet.create({
     container:{
         flex: 1,
@@ -71,4 +73,4 @@ const styles = StyleSheet.create({
     list: {
         marginTop: 20,
     },
-});
+})
