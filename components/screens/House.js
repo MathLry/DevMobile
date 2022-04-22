@@ -4,7 +4,7 @@ import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
 import { useState  } from 'react';
 import HouseItem from '../houseItem';
 import {Button,Input,NativeBaseProvider} from 'native-base';
-
+import Swipeout from 'react-native-swipeout';
 
 export default function App({navigation}) {
     const [currentPlace, setCurrentPlace] = useState("");
@@ -18,6 +18,7 @@ export default function App({navigation}) {
         
         setHouse([...house,{text : currentPlace, key: house.length+1}])
         setCurrentPlace("");
+        setCurrentInput("");
        
     }
 
@@ -30,7 +31,7 @@ export default function App({navigation}) {
     return (
         
         <NativeBaseProvider>
-            <View style={styles.container}>
+            <View style={styles.container}>                   
             <Input 
             placeholder="Ajouter une piece"
             value={currentPlace} 
@@ -58,6 +59,7 @@ export default function App({navigation}) {
             </View>
             </NativeBaseProvider>
     )}
+
 const styles = StyleSheet.create({
     container:{
         flex: 1,

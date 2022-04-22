@@ -17,24 +17,37 @@ export default function App({navigation}) {
 
     }
 
+    const addPlace = () => {
+        setDescription([...description,{text : currentPlace, key: description.length+1}])
+        setCurrentPlace("");
+       
+    }
+
+    const addButton = <Button title={submitted? 'clear': 'submit' } 
+    onPress={onPressHandler}>+</Button>;
+
  
     return (
-        <View style={styles.body}>
-            <Text style={styles.text}>
-                Please write your name:
-            </Text>
-            <TextInput
-                style={styles.input}
-                placeholder='e.g. John'
-                onChangeText={(value) => SetName(value)}
-            />
-            { <Button
-                title={submitted ? 'Clear' : 'Submit'}
-                onPress={onPressHandler}
-            /> }
-        </View>
-  );
-};
+
+        <NativeBaseProvider>
+
+            <View style={styles.container}>
+                    <View style={styles.description}>
+                       <Input
+                       multiline
+                       style={styles.input}
+                       placeholder='Ajouter une description'
+                       onChangeText={(text)=> setCurrentPlace (text)}
+                       rightElement={addButton}
+                       />
+                    </View>
+ 
+
+            </View>
+            </NativeBaseProvider>
+            
+        
+    )}
 
     const styles = StyleSheet.create({
 
