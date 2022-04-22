@@ -1,6 +1,7 @@
 import House from './components/screens/House.js';
 import Room from './components/screens/Room.js'
 import Furniture from './components/screens/Furniture.js'
+import ObjectDescription from './components/screens/ObjectDescription.js'
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
@@ -17,6 +18,7 @@ const Nav = () => {
       <Screen name="House" component={House} options={{headerStyle : {backgroundColor : "orange"}, title : "Maison"}}></Screen>
       <Screen name="Room" component={Room} options={({route}) => { return {title : route.params.todo.text, headerStyle : {backgroundColor : 'orange'}}}}></Screen>
       <Screen name="Furniture" component={Furniture} options={({route}) => { return {title : route.params.todo.text, headerStyle : {backgroundColor : 'orange'}}}}></Screen>
+      <Screen name="ObjectDescription" component={ObjectDescription} options={({route}) => { return {title : route.params.todo.text, headerStyle : {backgroundColor : 'orange'}}}}></Screen>
     </Navigator>
   )
 }

@@ -1,4 +1,4 @@
-import { View, ScrollView, Text, StyleSheet, FlatList} from 'react-native';
+import { View, StyleSheet, FlatList} from 'react-native';
 import { useState  } from 'react';
 import HouseItem from '../houseItem';
 import {Button,Input,NativeBaseProvider} from 'native-base';
