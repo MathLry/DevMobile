@@ -7,9 +7,10 @@ import {Button,Input,NativeBaseProvider} from 'native-base';
 
 
 export default function App({navigation}) {
-    const [description, setDescription] = useState("");
+    const [currentPlace, setCurrentPlace] = useState("");
     const [submitted, setSubmitted] = useState(false);
-    const [currentPlace, setCurrentPlace] = useState([
+    const [description, setDescription] = useState([ 
+        {text : "à gauche", key:'1'},
     ]);
 
     const onPressHandler = ()=>{
@@ -23,8 +24,7 @@ export default function App({navigation}) {
        
     }
 
-    const addButton = <Button title={submitted? 'clear': 'submit' } 
-    onPress={onPressHandler}>+</Button>;
+    const addButton = <Button onPress={addPlace}>+</Button>;
 
  
     return (
@@ -32,14 +32,25 @@ export default function App({navigation}) {
         <NativeBaseProvider>
 
             <View style={styles.container}>
-                    <View style={styles.description}>
-                       <Input
+                <Input
                        multiline
                        style={styles.input}
                        placeholder='Ajouter une description'
                        onChangeText={(text)=> setCurrentPlace (text)}
                        rightElement={addButton}
                        />
+                    <View style={styles.description}>
+                    <FlatList
+                            data={description}
+                            renderItem={({item}) => (
+                                <HouseItem item={item}
+                                text={item.text}  
+                                onToggle={() => {
+                                    setDescription([...description]);
+                                }}/>
+                            )}
+                        />
+                       
                     </View>
  
 
