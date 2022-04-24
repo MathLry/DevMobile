@@ -1,24 +1,25 @@
 import {useState} from "react";
 import {Button, Input} from "native-base";
 import { View, ScrollView} from 'react-native';
-import Test from "../test.js";
+
 import * as FileSystem from 'expo-file-system';
 
-export default ({navigation}) => {
+export default function Save() {
 
-    const fileURI = FileSystem.documentDirectory + "./save.json";
+    const fileURI = FileSystem.documentDirectory + "../data/save.json";
     const [currentObjet, setCurrentObjet] = useState("");
     let [objets, setObjet] = useState([]);
     let getItem;
 
-    async function Sauvegarde(){
+    async function SaveData(){
 
         try {
             const payloadJson = await FileSystem.readAsStringAsync(fileURI)
             const payload = JSON.parse(payloadJson)
             const updatedPayload = { ...payload, ...updates }
             await FileSystem.writeAsStringAsync(fileURI, JSON.stringify(updatedPayload))
-        } catch {
+        } catch (e) {
+            console.error(e);
         }
         if (await FileSystem.readAsStringAsync(fileURI)== undefined){
             [objets, setObjet] = useState([]);
@@ -38,7 +39,7 @@ export default ({navigation}) => {
     const addObjet = () => {
         setObjet([...objets,{text : currentObjet, description : ""}])
         setCurrentObjet("");
-        Sauvegarde(getItem)
+        SaveData(getItem)
     }
 
     const viewDetails = (todo) =>{
@@ -68,7 +69,7 @@ export default ({navigation}) => {
         </View>
     </View>
     );
-};
+}
   
 const styles = {
     expand : {

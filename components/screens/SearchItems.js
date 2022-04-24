@@ -8,7 +8,7 @@ export default function SearchItems() {
     {key: '2', name: "stylo"},
     {key: '3', name: "veste"},
     {key: '4', name: "chaise"},
-    {key: '5', name: "tapis"},
+    {key: '5', name: "commode"},
     {key: '6', name: "chaussure"},
   ];
 

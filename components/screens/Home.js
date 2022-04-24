@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+import SaveDATA from '../data/saveDATA.js';
 
 export default function App() {
   return (
     <View>
-        <Text style={styles.textScreen}>Home</Text>
+        {/* <SaveDATA style={ styles.textScreen }/> */}
         <StatusBar style="auto" />
     </View>
   );
