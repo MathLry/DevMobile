@@ -26,7 +26,7 @@ const piece = {
 
 const meuble = {
     nom: 'placard',
-    piece: 'salon',
+    piece: 'cuisine',
     compartiments: '5',
 };
 
@@ -81,6 +81,6 @@ const saveFurniture = (meuble) => {
     saveData(data, 'save.json');
 }
 
-// saveItem(objet);
-// saveRoom(piece);
-// saveFurniture(meuble);
+ saveItem(objet);
+ saveRoom(piece);
+//  saveFurniture(meuble);
