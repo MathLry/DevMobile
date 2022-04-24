@@ -1,35 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import House from './components/screens/House.js';
-import {NativeBaseProvider} from 'native-base';
-import {NavigationContainer} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const { Navigator, Screen} = createNativeStackNavigator();
+import HomeScreen from './components/screens/Home';
+import SearchScreen from './components/screens/SearchItems';
+import ListScreen from './components/screens/ListItems';
 
-const Nav = () => {
-  return (
-    <Navigator>
-      <Screen name="House" component={House} options={{headerStyle : {backgroundColor : "grey"}, title : "Maison"}}></Screen>
-    </Navigator>
-  )
-}
+const Tab = createBottomTabNavigator();
 
-console.log(Nav);
 export default function App() {
   return (
-    <NativeBaseProvider>
-      <NavigationContainer>
-        <Nav></Nav>
-      </NavigationContainer>
-      <StatusBar style="auto" />
-    </NativeBaseProvider>
+    <NavigationContainer>
+      <Tab.Navigator 
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused ? 'ios-home-sharp' : 'ios-home-outline';
+            } else if (route.name === 'Search') {
+              iconName = focused ? 'ios-search-sharp' : 'ios-search-outline';
+            } else if (route.name === 'List') {
+              iconName = focused ? 'ios-list-sharp' : 'ios-list';
+            }
+
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'royalblue',
+          tabBarInactiveTintColor: 'gray',
+        })}>
+        <Tab.Screen name="Home" component={HomeScreen} onPress={() => navigation.navigate('Home')} />
+        <Tab.Screen name="Search" component={SearchScreen} onPress={() => navigation.navigate('SearchItems')}/>
+        <Tab.Screen name="List" component={ListScreen} onPress={() => navigation.navigate('ListItems')} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

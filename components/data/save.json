@@ -1,0 +1,13 @@
+{
+  "stylo": {
+    "name": "stylo",
+    "categorie": "instrument pour ecrire",
+    "piece": "salon",
+    "image": "img.png",
+    "meuble": "placard"
+  },
+  "placard": {
+    "name": "salon",
+    "meubles": {}
+  }
+}
